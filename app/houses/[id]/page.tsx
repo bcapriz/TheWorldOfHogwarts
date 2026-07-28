@@ -36,7 +36,8 @@ export default async function HousePage({
     house = await getHouseById(id);
   } catch (err) {
     if (err instanceof HouseNotFoundError) notFound();
-    throw err;
+    console.error(`Failed to load house ${id}:`, err);
+    throw new Error('We couldn\'t load this house. Please try again later.');
   }
 
   return (

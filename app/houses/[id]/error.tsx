@@ -13,7 +13,12 @@ export default function HouseError({
         Something went wrong
       </h1>
       <p className="mt-3 text-sm text-zinc-500 dark:text-zinc-400">
-        {error.message}
+        We couldn&apos;t load this page. Please try again.
+        {error.digest && (
+          <span className="ml-1 text-zinc-400 dark:text-zinc-500">
+            (ref: {error.digest})
+          </span>
+        )}
       </p>
       <button
         onClick={reset}
