@@ -12,7 +12,13 @@ function getUserId(): string {
   return id;
 }
 
-export default function SelectHouseButton({ houseName }: { houseName: string }) {
+export default function SelectHouseButton({
+  houseName,
+  accentColor,
+}: {
+  houseName: string;
+  accentColor?: string;
+}) {
   const [selected, setSelected] = useState(false);
 
   useEffect(() => {
@@ -37,7 +43,8 @@ export default function SelectHouseButton({ houseName }: { houseName: string }) 
   return (
     <button
       onClick={handleSelect}
-      className="rounded-lg bg-zinc-900 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-zinc-700 dark:bg-zinc-100 dark:text-black dark:hover:bg-zinc-300"
+      style={accentColor ? { borderColor: accentColor } : undefined}
+      className="rounded-lg border-2 border-transparent bg-zinc-900 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-zinc-700 dark:bg-zinc-100 dark:text-black dark:hover:bg-zinc-300"
     >
       Esta es mi casa
     </button>

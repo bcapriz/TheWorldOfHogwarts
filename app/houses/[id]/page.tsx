@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getHouses, getHouseById, HouseNotFoundError } from '@/lib/api';
+import { parseHouseColours } from '@/lib/houseColours';
 import HouseDetailTracker from '@/components/analytics/HouseDetailTracker';
 import SelectHouseButton from '@/components/analytics/SelectHouseButton';
 import TraitList from '@/components/TraitList';
@@ -40,9 +41,16 @@ export default async function HousePage({
     throw new Error('We couldn\'t load this house. Please try again later.');
   }
 
+  const [primary, secondary] = parseHouseColours(house.houseColours);
+
   return (
     <>
       <HouseDetailTracker houseId={house.id} houseName={house.name} />
+
+      <div
+        className="h-2 w-full"
+        style={{ background: `linear-gradient(90deg, ${primary}, ${secondary})` }}
+      />
 
       <main className="mx-auto max-w-2xl px-6 py-16">
         <nav className="mb-8 text-sm text-zinc-500 dark:text-zinc-400">
@@ -58,7 +66,12 @@ export default async function HousePage({
           <h1 className="text-3xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
             {house.name}
           </h1>
-          <p className="mt-1 text-sm font-medium uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+          <p className="mt-1 flex items-center gap-1.5 text-sm font-medium uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+            <span
+              aria-hidden
+              className="inline-block h-2.5 w-2.5 rounded-full"
+              style={{ background: `linear-gradient(135deg, ${primary}, ${secondary})` }}
+            />
             {house.houseColours}
           </p>
         </header>
@@ -107,7 +120,7 @@ export default async function HousePage({
           </section>
         )}
 
-        <SelectHouseButton houseName={house.name} />
+        <SelectHouseButton houseName={house.name} accentColor={primary} />
       </main>
     </>
   );
