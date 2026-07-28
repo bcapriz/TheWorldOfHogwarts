@@ -59,7 +59,7 @@ export default async function HousePage({
             {house.name}
           </h1>
           <p className="mt-1 text-sm font-medium uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
-            {house.houseColors}
+            {house.houseColours}
           </p>
         </header>
 

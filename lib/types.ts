@@ -14,7 +14,7 @@ export const TraitSchema = z.object({
 export const HouseSchema = z.object({
   id: z.string(),
   name: z.string(),
-  houseColors: z.string(),
+  houseColours: z.string(),
   founder: z.string(),
   animal: z.string(),
   element: z.string(),

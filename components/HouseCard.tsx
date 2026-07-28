@@ -21,7 +21,7 @@ export default function HouseCard({ house }: { house: House }) {
         {house.name}
       </h2>
       <p className="mt-1 text-xs font-medium tracking-wide text-zinc-500 uppercase dark:text-zinc-400">
-        {house.houseColors}
+        {house.houseColours}
       </p>
       <dl className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 text-sm text-zinc-600 dark:text-zinc-400">
         <div>
